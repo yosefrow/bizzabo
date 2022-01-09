@@ -39,18 +39,18 @@ that we'd be happy to contribute to. This is not a programming contest where dir
 
 Infrastructure as code for AWS was created using Terraform and includes the following
 
-- VPC with two public and private subnets (vpc.tf)
-- Route tables for each subnet (vpc.tf)
-- Security Group to allow port 80 and 443 from the Internet (security.tf)
-- ELB - listening on ports 80 & 443 (elb.tf)
-- Public route53 hosted zone and CNAME entry for the ELB (dns.tf)
+- VPC with two public and private subnets (terraform/vpc.tf)
+- Route tables for each subnet (terraform/vpc.tf)
+- Security Group to allow port 80 and 443 from the Internet (terraform/security.tf)
+- ELB - listening on ports 80 & 443 (terraform/elb.tf)
+- Public route53 hosted zone and CNAME entry for the ELB (terraform/dns.tf)
 
 ### AWS API 
 
 The script was create dusing Python and performs the following activities: 
 
-- List AWS services being used region wise (list-services.py)
-- List each service in detail, like EC2, RDS etc. (describe-services.py)
+- List AWS services being used region wise (python/list-services.py)
+- List each service in detail, like EC2, RDS etc. (python/describe-services.py)
 
 ### Notes 
 
