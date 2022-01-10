@@ -1,3 +1,7 @@
+# don't store sensitive files
+
+.env
+
 # VSCode ####
 
 .vscode/*
