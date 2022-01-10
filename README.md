@@ -37,24 +37,15 @@ that we'd be happy to contribute to. This is not a programming contest where dir
 
 ### AWS Infrastructure as Code 
 
-Infrastructure as code for AWS was created using Terraform and includes the following
+Infrastructure as code for AWS was created using Terraform 
 
-- VPC with two public and private subnets (terraform/vpc.tf)
-- Route tables for each subnet (terraform/vpc.tf)
-- Security Group to allow port 80 and 443 from the Internet (terraform/security.tf)
-- ELB - listening on ports 80 & 443 (terraform/elb.tf)
-- Public route53 hosted zone and CNAME entry for the ELB (terraform/dns.tf)
+see ./terraform/README.md
 
 ### AWS API 
 
-I'm guessing the requirement is not to actually list *all* aws services in a region, as there are potentially over 1024 API Endpoints
-There are tools that do attempt to list all services such as 'aws_list_all'. However, I don't think its in the scope of this project
+Python was selected to talk to the AWS API
 
-As such I've reduced the scope to EC2 Instances and and RDS.
-
-- List EC2 and RDS DBs being used (python/list-services.py)
-- List details about EC2 instances and RDS DBs being used (python/describe-services.py)
-
+see ./python/README.md
 ### Notes 
 
-- GitHub repo: 
+- GitHub repo: https://github.com/yosefrow/bizzabo/tree/main/terraform
