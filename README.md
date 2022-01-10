@@ -48,4 +48,4 @@ Python was selected to talk to the AWS API
 see ./python/README.md
 ### Notes 
 
-- GitHub repo: https://github.com/yosefrow/bizzabo/tree/main/terraform
+- GitHub repo: https://github.com/yosefrow/bizzabo
