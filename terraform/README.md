@@ -48,7 +48,7 @@ Based on https://github.com/terraform-aws-modules/terraform-aws-elb/tree/master/
 |------|--------|---------|
 | <a name="module_acm"></a> [acm](#module\_acm) | terraform-aws-modules/acm/aws | ~> 3.0 |
 | <a name="module_ec2_instances"></a> [ec2\_instances](#module\_ec2\_instances) | terraform-aws-modules/ec2-instance/aws | ~> 2.0 |
-| <a name="module_elb"></a> [elb](#module\_elb) | ../../ | n/a |
+| <a name="module_elb"></a> [elb](#module\_elb) | terraform-aws-modules/elb/aws | n/a |
 
 ## Inputs
 
@@ -80,7 +80,7 @@ This configuration uses Availability Zone IDs and Availability Zone names for de
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | ../../ | n/a |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | n/a |
 ## Outputs
 
 | Name | Description |
