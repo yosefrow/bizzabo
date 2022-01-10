@@ -3,54 +3,41 @@
 import boto3
 import logging
 import os
+from modules.RegionInfo import RegionInfo as RegionInfo
 
-# Get information
-
-def get_instances(region: str) -> list:
-    ec2 = boto3.client('ec2', region_name=region)
-    response = ec2.describe_instances()
-    instances = []
-    for reservation in response['Reservations']:
-        instances += [instance['InstanceId'] for instance in reservation['Instances']]
-    return instances
-
-def get_load_balancers(region:str) -> list:
-    elb = boto3.client('elb', region_name=region)
-    response = elb.describe_load_balancers()
-    return [load_balancer['LoadBalancerName'] for load_balancer in response['LoadBalancerDescriptions']] 
-
-# Describe Information
-
-def describe_instances(region: str, instances: list):
-    ec2 = boto3.client('ec2', region_name=region)
-    response = ec2.describe_instances( InstanceIds=instances)
-    
-    print("InstanceId, ImageId, PrivateIpAddress")
-    for reservation in response['Reservations']:
-       for instance in reservation['Instances']:
-            print(f"{instance['InstanceId']}, {instance['ImageId']}, {instance['PrivateIpAddress']}")
-
-def describe_load_balancers(region, load_balancers):
-    elb = boto3.client('elb', region_name=region)
-    response = elb.describe_load_balancers(LoadBalancerNames=load_balancers)
-    
-    print(f"LoadBalancerName, Scheme, DNSName")   
-    for load_balancer in response['LoadBalancerDescriptions']:
-        print(f"{load_balancer['LoadBalancerName']}, {load_balancer['Scheme']}, {load_balancer['DNSName']}")
-
-if __name__ == "__main__":
-    # Execute when module not intialized from import
-    logging.basicConfig(level=os.environ.get("LOGLEVEL"))
-
+def show_identity():
     # boto3.session.Session(region_name=None, profile_name=None)
     aws = boto3.session.Session()
     sts = aws.client('sts')
     identity = sts.get_caller_identity()
     logging.debug(f'Using Identity: {identity}') 
+
+if __name__ == "__main__":
+    # Execute when module not intialized from import
+    logging.basicConfig(level=os.environ.get("LOGLEVEL"))
+
+    show_identity()
     
-    region = os.environ.get('AWS_REGION')
-    load_balancers = get_load_balancers(region)
-    instances = get_instances(region)
+    region = os.environ.get('AWS_DEFAULT_REGION')
+    region_info=RegionInfo(region)
     
-    describe_instances(region, instances)
-    describe_load_balancers(region, load_balancers)
+    # Show Resource 1
+    print(f"List Instances for {region}:")
+    print('------------------------------')
+    region_info.list_instances()
+    print('\n')
+    print(f"Describe Instances for {region}:")
+    print('------------------------------')
+    region_info.describe_instances()
+    print('\n')
+    
+    
+    # Show Resource 2
+    print(f"List Load Balancers for {region}:")
+    print('------------------------------')
+    region_info.list_load_balancers()
+    print('\n')
+    print(f"Describe Load Balancers for {region}:")
+    print('------------------------------')
+    region_info.describe_load_balancers()    
+    print('\n')
