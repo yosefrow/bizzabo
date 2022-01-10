@@ -9,7 +9,11 @@ import os
 # Instantiate constructor for each (ec2, elb, etc.)
 # Split into more classes
 
-class RegionInfo:    
+class RegionInfo:
+    """
+    Class that provides information about an AWS region by fetching, storing, and parsing AWS API data
+
+    """
     region = ''
     instances = []
     load_balancers = []
@@ -27,6 +31,11 @@ class RegionInfo:
     # EC2 Related functions
     
     def get_instances(self) -> list:
+        """Get Instances from AWS API Effeciently
+
+        Returns:
+            list: list of instances
+        """
         # Add some effeciency logic here so we don't fetch all the time
         # Balance it with data freshness, and add override for exceptions
         if not self.instances:
@@ -34,7 +43,13 @@ class RegionInfo:
         
         return self.instances 
     
-    def fetch_instances(self) -> list:                
+    def fetch_instances(self) -> list:
+        """Fetch instances from AWS API
+
+        Returns:
+            list: list of aws instances
+        """
+                      
         ec2 = boto3.client('ec2', region_name=self.region)
         response = ec2.describe_instances()
         instances = []
@@ -43,14 +58,23 @@ class RegionInfo:
         self.instances = instances
     
     def get_instance_ids(self) -> list:
+        """Get list of aws instances ids
+
+        Returns:
+            list: list of instance ids
+        """
         instances = self.get_instances()        
         return [instance['InstanceId'] for instance in instances]
 
     def list_instances(self):
+        """Print list of instance ids
+        """
         self.list_resources(self.get_instance_ids())
 
     def describe_instances(self):
-        instances = self.get_instances()   
+        instances = self.get_instances()
+        """Print list of instance descriptions
+        """
         
         print("InstanceId, ImageId, PrivateIpAddress")
         for instance in instances:     
