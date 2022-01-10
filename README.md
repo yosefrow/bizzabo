@@ -47,10 +47,13 @@ Infrastructure as code for AWS was created using Terraform and includes the foll
 
 ### AWS API 
 
-The script was create dusing Python and performs the following activities: 
+I'm guessing the requirement is not to actually list *all* aws services in a region, as there are potentially over 1024 API Endpoints
+There are tools that do attempt to list all services such as 'aws_list_all'. However, I don't think its in the scope of this project
 
-- List AWS services being used region wise (python/list-services.py)
-- List each service in detail, like EC2, RDS etc. (python/describe-services.py)
+As such I've reduced the scope to EC2 Instances and and RDS.
+
+- List EC2 and RDS DBs being used (python/list-services.py)
+- List details about EC2 instances and RDS DBs being used (python/describe-services.py)
 
 ### Notes 
 
