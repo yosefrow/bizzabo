@@ -1,7 +1,7 @@
 # Python Implementation
 ## AWS API - Requirement
 
-The script was create dusing Python and performs the following activities: 
+The script was created using Python and performs the following activities: 
 
 - List AWS services being used region wise (python/list-services.py)
 - List each service in detail, like EC2, RDS etc. (python/describe-services.py)
